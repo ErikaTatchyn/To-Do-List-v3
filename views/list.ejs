@@ -1,0 +1,43 @@
+<%- include('header'); -%>
+<div class="box" id="heading">
+  <h1><%= kindOfDay %></h1>
+</div>
+
+<div class="box" id="searchBar">
+  <form class="item" action="/search-box" method="post">
+    <input type="text" name="searchedItem" />
+    <button type="submit" name="button">
+      <i class="fa-solid fa-magnifying-glass fa-xs"></i>
+    </button>
+  </form>
+</div>
+
+<div class="box">
+  <% newListedItem.forEach(function(item) { %>
+  <form action="/delete" method="post">
+    <div class="item">
+      <input
+        type="checkbox"
+        onChange="this.form.submit()"
+        name="checkbox"
+        value="<%= item.tasks_col %>"
+      />
+      <p><%= item.tasks_col %></p>
+    </div>
+  </form>
+  <% }) %>
+
+  <form class="item" action="/" method="post">
+    <input type="text" name="newItem" />
+    <button type="submit" name="button" value="<%= kindOfDay %>">+</button>
+  </form>
+</div>
+
+<form class="item" action="/" method="get">
+  <button class="show-all-button" type="submit" name="button">
+    <i class="fas fa-sync-alt"></i> Show All
+  </button>
+</form>
+
+<script src="" async defer></script>
+<%- include('footer'); -%>
